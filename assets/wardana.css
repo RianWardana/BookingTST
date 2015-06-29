@@ -1,0 +1,58 @@
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+#full-menu {
+	margin-top: 0px;
+}
+
+#mobile-menu {
+	display: none;
+	margin-top: 0px;
+}
+
+#booking-header {
+	overflow: hidden;
+	margin: 20px 0px;;
+}
+
+#tab {
+	overflow: hidden;
+}
+
+#content {
+	overflow: hidden;
+	background-color: #fff;
+	margin-top: -1px;
+	margin-bottom: 0px;
+	padding-bottom: 40px;
+	border-top: 1px solid #d4d4d5;
+	border-bottom: 1px solid #d4d4d5;
+}
+
+#divider-content {
+	margin-top: 40px;
+}
+
+#divider-content .segment {
+	margin-top: -20px;
+}
+
+@media (max-width: 700px) {
+	#full-menu { display: none; }
+	#mobile-menu { display: block; }
+}
+
+@media (max-width: 768px) {
+	#booking-header { margin-bottom: 0px; }
+	#profile-segment { text-align: center; margin-top: -50px; }
+	#tab { margin-top: -15px; }
+	#divider-content { margin-top: 10px; }
+	#aux-segment { display: none; }
+	#aux-column { display: none; }
+}
+
+@media (min-width: 789px) {
+	#avatar { margin-right: -40px; }
+}
