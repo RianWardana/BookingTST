@@ -88,7 +88,7 @@ class Profile extends MY_Controller {
 		// USER ADALAH GURU -> BISA UPLOAD FOTO //
 		if ($profile->kategori == 1) {
 			$config['upload_path'] = './avatar/';
-			$config['allowed_types'] = 'gif|jpg|png';
+			$config['allowed_types'] = 'gif|jpg|jpeg|png';
 			$config['file_name'] = $username;
 			$config['max_size']	= '1024';
 			$config['overwrite'] = 'TRUE';

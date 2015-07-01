@@ -37,13 +37,15 @@ class Message extends MY_Controller {
 				$this->load->view('footer_view');
 			}
 			
+			// TUJUAN ADA -> YUK MARI //
 			else {
 				
-				if ($this->input->post('send_msg')) {
+				// USER KIRIM PESAN //
+				/*if ($this->input->post('send_msg')) {
 					if ($this->input->post('text_input') != '') {
 						$this->msg_model->send_msg($rx);
 					}					
-				}
+				}*/
 			
 				$this->data['this_page'] = 'chat';
 				$msg = $this->msg_model->get_msg($this->profile, $rx);

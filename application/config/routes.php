@@ -46,6 +46,7 @@ $route['booking/(:any)'] = 'booking/index/$1';
 $route['booking/(:any)/(:any)'] = 'booking/index/$1/$2';
 $route['message/list'] = 'message/msg_list';
 $route['message/(:any)'] = 'message/index/$1';
+$route['msg/(:any)'] = 'msg/index/$1';
 
 
 

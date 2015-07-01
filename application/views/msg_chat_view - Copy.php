@@ -70,6 +70,11 @@
 
 		<div style="padding: 0px 0% 0px;">
 			
+			<!--<div id="chat_header">
+				<a href="<?php echo base_url('message');?>"><button id="back_button" type="submit" class="ui button"><i class='big arrow left icon'></i></button></a>
+				
+				
+			</div>-->
 			
 			<div id="header_menu" class="ui large borderless orange inverted menu">
 				<div class="fitted item">
@@ -79,11 +84,33 @@
 			</div>
 			
 			<div id="chat_container">
+				<?php
+					foreach($msg_chat as $msg) {
+						$ava = $rx_data->avatar;
+						$text = $msg->pesan;
+						$sender = $msg->pengirim;
+						$unix = strtotime($msg->waktu);
+						$waktu = date('M d, H:i', $unix);
+						echo "
+							<div id='chat_unit' class='ui basic segment'>
+								
+								<div class='ui". ($sender == $profile->username ? ' right floated ' : ' orange inverted ') ."compact segment'>".
+									($sender == $profile->username ? "" : "<img class='ui avatar image' src='$ava'>")
+									."  $text
+								</div>
+								
+							</div>
+							
+
+							<p class='chat_date". ($sender == $profile->username ? ' right' : '') ."'>$waktu</p>
+
+					";}
+				?>
 			</div>
 			
 			<form method="post" id="input_area">
 				<textarea id="text_input" name="text_input" maxlength="320" autofocus></textarea>
-				<input id="send_button" name="send_msg" type="button" class="ui blue button" style="width: 18%; float: right;" value="Kirim">
+				<input id="send_button" name="send_msg" type="submit" class="ui submit blue button" style="width: 18%; float: right;" value="Kirim">
 			</form>
 			
 		</div>
@@ -99,10 +126,6 @@
 		<script type="text/javascript" src="<?php echo base_url("assets/wardana.js");?>"></script>
 		
 		<script>
-			function scroll_bawah() {
-				var objDiv = document.getElementById('chat_container');
-				objDiv.scrollTop = objDiv.scrollHeight;
-			}
 			
 			function resize_semuanya() {
 				input_part = 0.1;
@@ -128,68 +151,14 @@
 				document.getElementById('send_button').style.height = input_height - 2*input_padding + 'px';
 			}
 			
-			var prev = ''
-			function get_log() {
-				var html = '';
-				var epoch, waktu, sender;
-				var user = '<?php echo $this->username; ?>';
-				var avatar = '<?php echo $rx_data->avatar;?>';
-				var bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des', ];
-				
-				setTimeout(function(){
-				$.ajax({
-					url: '<?php echo base_url('msg/' . $rx_data->username);?>',
-					type: 'GET',
-					success: function(string) {
-						msgs = JSON.parse(string);
-						$.each(msgs, function(i, msg){
-							sender = msg.pengirim;
-							epoch = new Date(Date.parse(msg.waktu));
-							waktu = bulan[epoch.getMonth()] + (epoch.getDate() < 10 ? ' 0' : ' ') + epoch.getDate() + ', ' + (epoch.getHours() < 10 ? '0' : '') + epoch.getHours() + ':' + (epoch.getMinutes() < 10 ? '0' : '') + epoch.getMinutes();
-							html += "<div id='chat_unit' class='ui basic segment'>" +
-									"<div class='ui" + (sender == user ? ' right floated ' : ' orange inverted ') + "compact segment'>" +
-									(sender == user ? "" : "<img class='ui avatar image' src='" + avatar + "'>") + msg.pesan +
-									"</div></div>" + "<p class='chat_date" + (sender == user ? ' right' : '') + "'>"+ waktu + "</p>";
-						});
-						$('#chat_container').html(html);
-						if (html != prev) scroll_bawah();
-						prev = html;
-						get_log();
-					}
-				});
-				}, 500);
-			}
-			
-			
-			$(document).ready(function(){
-				resize_semuanya();
-				get_log();
-			});
-			
+			resize_semuanya();
+			var objDiv = document.getElementById('chat_container');
+			objDiv.scrollTop = objDiv.scrollHeight;
 			
 			$(window).resize(function() {
 				resize_semuanya();
 			});
-			
-			
-			$('#send_button').on('click', function(){
-				if ($('#text_input').val() != '') {
-					var data = {
-						terkirim: '<?php echo $rx_data->username;?>',
-						text_input: $('#text_input').val()
-					};
-				
-					$.ajax({
-						url: '<?php echo base_url('msg/' . $rx_data->username);?>',
-						type: 'POST',
-						data: data,
-						success: function(string){
-							$('#text_input').val('');
-						}
-					});
-				}
-			});
-			
+	
 		</script>
 		
 	</body>
