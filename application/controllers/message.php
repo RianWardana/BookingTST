@@ -40,7 +40,7 @@ class Message extends MY_Controller {
 			// TUJUAN ADA -> YUK MARI //
 			else {
 				
-				// USER KIRIM PESAN //
+				// USER KIRIM PESAN - NONAJAX //
 				/*if ($this->input->post('send_msg')) {
 					if ($this->input->post('text_input') != '') {
 						$this->msg_model->send_msg($rx);
