@@ -51,26 +51,21 @@
 						<!------------------------------------------MESSAGE------------------------------------------------------------------------->
 						<div id="msg_content" class="twelve wide column">
 							<div class="ui fluid vertical menu">
-								<?php
-								for ($count = 0; $count < $msg_qty; $count++) {
-									$username = $msg_list[$count]->username;
-									$display = ($profile->kategori == 1 ? ucwords($msg_list[$count]->nama) : strtoupper($username) );
-									$avatar = $msg_list[$count]->avatar;
-									$url = base_url("message/$username");
-									$latest_msg = $msg_latest[$count]->pesan;
-									echo "
-										<a class='item msg_list' href='$url'>
-											<h3 class='ui header'>
-												<img class='ui circular image' src='$avatar'>
-												<div class='content'>
-													$display
-													<div class='sub header msg_crop'>$latest_msg</div>
-												</div>
-											</h3>
-										</a>
-									";
-									
-								}
+								<?php							
+									foreach($msg_list as $msg) {
+										$url = base_url("message/{$msg->pengirim}");
+										echo "
+											<a class='item msg_list' href='$url'>
+												<h3 class='ui header'>
+													<img class='ui circular image' src='{$msg->avatar}'>
+													<div class='content'>
+														{$msg->nama}
+														<div class='sub header msg_crop'>{$msg->pesan}</div>
+													</div>
+												</h3>
+											</a>
+										";
+									}
 								?>
 							</div>
 						</div>

@@ -131,7 +131,7 @@
 			var prev = ''
 			function get_log() {
 				var html = '';
-				var epoch, waktu, sender;
+				var epoch, waktu, waktu_string, sender;
 				var user = '<?php echo $this->username; ?>';
 				var avatar = '<?php echo $rx_data->avatar;?>';
 				var bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des', ];
@@ -144,7 +144,8 @@
 						msgs = JSON.parse(string);
 						$.each(msgs, function(i, msg){
 							sender = msg.pengirim;
-							epoch = new Date(Date.parse(msg.waktu));
+							waktu_string = msg.waktu.split('-').join('/');
+							epoch = new Date(waktu_string);
 							waktu = bulan[epoch.getMonth()] + (epoch.getDate() < 10 ? ' 0' : ' ') + epoch.getDate() + ', ' + (epoch.getHours() < 10 ? '0' : '') + epoch.getHours() + ':' + (epoch.getMinutes() < 10 ? '0' : '') + epoch.getMinutes();
 							html += "<div id='chat_unit' class='ui basic segment'>" +
 									"<div class='ui" + (sender == user ? ' right floated ' : ' orange inverted ') + "compact segment'>" +

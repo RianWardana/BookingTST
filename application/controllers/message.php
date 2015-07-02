@@ -21,15 +21,7 @@ class Message extends MY_Controller {
 			// TUJUAN KOSONG ATAU TIDAK VALID -> LOAD DAFTAR CHAT //
 			if ( ($rx == '') || !$check_rx ) {
 				$this->data['this_page'] = 'message';
-				
-				$count = 0;
-				$msg_list = $this->msg_model->get_msg_list($this->username);
-				foreach ($msg_list as $list) {
-					$this->data['msg_list'][$count] = $this->msg_model->get_profile($list->terkirim);
-					$this->data['msg_latest'][$count] = $this->msg_model->get_latest_msg($list->terkirim, $this->profile->username);
-					$count++;
-				}
-				$this->data['msg_qty'] = $count;
+				$this->data['msg_list'] = $this->msg_model->get_msg_list($this->username);
 				
 				$this->load->view('navbar_view', $this->data);
 				$this->load->view('profile_header_tpl', $this->data);	
@@ -37,19 +29,9 @@ class Message extends MY_Controller {
 				$this->load->view('footer_view');
 			}
 			
-			// TUJUAN ADA -> YUK MARI //
-			else {
-				
-				// USER KIRIM PESAN - NONAJAX //
-				/*if ($this->input->post('send_msg')) {
-					if ($this->input->post('text_input') != '') {
-						$this->msg_model->send_msg($rx);
-					}					
-				}*/
-			
+			// TUJUAN ADA -> YUK CHATTING //
+			else {		
 				$this->data['this_page'] = 'chat';
-				$msg = $this->msg_model->get_msg($this->profile, $rx);
-				$this->data['msg_chat'] = $msg;
 				$this->data['rx_data'] = $this->msg_model->get_profile($rx);
 				
 				$this->load->view('msg_chat_view', $this->data);

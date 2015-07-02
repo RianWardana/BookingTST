@@ -42,20 +42,10 @@ class Msg_model extends CI_Model {
 	
 	public function get_msg_list($username) {
 		return $this->db->query("
-			SELECT DISTINCT `terkirim` FROM `message` WHERE `pengirim` = '$username' 
-			UNION ALL 
-			SELECT DISTINCT `pengirim` FROM `message` WHERE `terkirim` = '$username' AND `pengirim` NOT IN 
-			(SELECT DISTINCT `terkirim` FROM `message` WHERE `pengirim` = '$username')
+			SELECT waktu, pengirim, terkirim, pesan, user.avatar, user.nama FROM (
+			SELECT * FROM (SELECT * FROM (SELECT * FROM `message` WHERE `terkirim` = '$username' ORDER BY `waktu` DESC) AS satu GROUP BY `pengirim`) AS dua ORDER BY `waktu` DESC
+			) AS tiga LEFT JOIN `user` ON pengirim = user.username
 		")->result();
-	}
-	
-	
-	public function get_latest_msg($user1, $user2) {
-		return $this->db->query("
-			SELECT `pesan` FROM `message` WHERE '$user1' IN(`pengirim`, `terkirim`) 
-			AND 
-			'$user2' IN(`pengirim`, `terkirim`) ORDER BY `waktu` DESC LIMIT 1
-		")->row();
 	}
 	
 	
