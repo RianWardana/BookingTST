@@ -70,7 +70,7 @@ class Booking extends MY_Controller {
 						<div class='ui error message'>
 							<div class='header'>Booking Anda gagal</div>
 							<ul class='list'>
-								<li>Durasi booking Anda kurang dari 1 menit, atau</li>
+								<li>Anda booking untuk waktu yang telah berlalu, atau</li>
 								<li>Anda sudah mengirim booking lain pada waktu yang sama</li>
 								<li>Cek semua daftar booking yang telah Anda kirimkan di halaman <a href='". base_url('notification') ."'>Notification</a></li>
 							</ul>

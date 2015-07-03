@@ -58,12 +58,18 @@ class Booking_model extends CI_Model {
 		
 		foreach ($result as $booking) {
 			if ( ($waktu_mulai >= strtotime($booking->jam_mulai)) && ($waktu_mulai < strtotime($booking->jam_bubar)) ) { return TRUE; break; }
-			else if ( ($waktu_bubar > strtotime($booking->jam_mulai)) && ($waktu_bubar <= strtotime($booking->jam_bubar)) ) { return TRUE; break; }
-			else if ( ($waktu_mulai <= strtotime($booking->jam_mulai)) && ($waktu_bubar >= strtotime($booking->jam_bubar)) ) { return TRUE; break; }
-			else { return FALSE; break; }
+			if ( ($waktu_bubar > strtotime($booking->jam_mulai)) && ($waktu_bubar <= strtotime($booking->jam_bubar)) ) { return TRUE; break; }
+			if ( ($waktu_mulai <= strtotime($booking->jam_mulai)) && ($waktu_bubar >= strtotime($booking->jam_bubar)) ) { return TRUE; break; }
 		}
+		return FALSE;
 	}
 	
+	public function udah_lewat($waktu_mulai) {
+		if ($waktu_mulai <= time())
+		return TRUE;
+		else
+		return FALSE;
+	}
 	
 	public function create_booking($guru, $tanggal) {
 	
@@ -72,6 +78,7 @@ class Booking_model extends CI_Model {
 		
 		if ($waktu_mulai == $waktu_bubar) return FALSE;
 		else if ($this->udah_booking($tanggal, $waktu_mulai, $waktu_bubar)) return FALSE;
+		else if ($this->udah_lewat($waktu_mulai)) return FALSE;
 		else {
 			$data = array(
 				'pembooking' => $this->session->userdata('displayname'),

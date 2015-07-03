@@ -127,9 +127,11 @@
 					<li>Memperbaiki bug yang menyebabkan Halaman Notifikasi dapat diakses tanpa melakukan login</li>
 				</ul>
 				
-				<p>Version 1.2 (01/07/15)</p>
+				<p>Version 1.2 (03/07/15)</p>
 				<ul>
 					<li>Penggunaan AJAX pada Halaman Pesan, memungkinkan pengiriman dan penerimaan pesan tanpa reload browser</li>
+					<li>Siswa tidak diperkenankan melakukan booking untuk waktu yang telah berlalu</li>
+					<li>Memperbaiki bug yang memungkinkan siswa melakukan beberapa booking pada waktu yang bersamaan</li>
 					<li>...</li>
 				</ul>
 			</div>
