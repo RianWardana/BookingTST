@@ -50,6 +50,6 @@
 		?>
 	</div>
 	
-	
+	<?php include_once 'js_tpl.php' ?>
 	</body>
 </html>      
