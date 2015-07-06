@@ -97,7 +97,15 @@
 					
 					<?php
 						$flash_booking = $this->session->flashdata('flash_booking');
-						if(isset($flash_booking)){ echo $flash_booking; }
+						if(isset($flash_booking) && $flash_booking) echo "
+							<div class='ui error message'>
+								<div class='header'>Booking Anda gagal</div>
+								<ul class='list'>
+									<li>$flash_booking</li>
+									<li>Cek semua daftar booking yang telah Anda kirimkan di halaman <a href='". base_url('notification') ."'>Notification</a></li>
+								</ul>
+							</div>
+						";
 					?>
 					
 					<div class="ui basic center aligned segment">
@@ -119,7 +127,7 @@
 		</div>
 		
 		
-		<!--------------------------------------------------------------MODAL BOOKING---------------------------------------------------------------->
+		<?php /*********************************************************MODAL BOOKING************************************************************/ ?>
 		<form method="post" class="ui modal modal-booking">
 			<input type="hidden" name="booking_submit" value="booking">
 			<div class="header">
@@ -165,10 +173,10 @@
 				<input class="ui positive submit button" type="submit" value="Kirim Booking">
 			</div>
 		</form>
-		<!------------------------------------------------------------------------------------------------------------------------------------------>
+		<?php /**********************************************************************************************************************************/ ?>
 		
 		
-		<!--------------------------------------------------------------MODAL BATAL----------------------------------------------------------------->
+		<?php /*********************************************************MODAL BATAL**************************************************************/ ?>
 		<form method="post" class="ui small modal modal-batal">
 			<input type="hidden" id="booking_batalkan" name="booking_batal" value="id">
 			<div class="header">
@@ -181,13 +189,29 @@
 			
 			<div class="actions form">
 				<div class="ui positive button">Tidak</div>
-				<!--<div type="submit" class="ui positive submit button">Kirim Booking</div>-->
 				<input class="ui negative submit button" type="submit" value="Batalkan">
 			</div>
 		</form>
-		<!------------------------------------------------------------------------------------------------------------------------------------------>
+		<?php /**********************************************************************************************************************************/ ?>
 		
 		
+		<?php
+			include_once 'js_tpl.php';
+			$dimmer_booking = $this->session->flashdata('dimmer_booking');
+			if(isset($dimmer_booking) && $dimmer_booking) echo "
+				<div class='ui page dimmer'>
+					<div class='content'>
+						<div class='center'>
+							<h2 class='ui center aligned inverted icon header'>$dimmer_booking</h2>
+						</div>
+					</div>
+				</div>
+				<script>
+					$('.dimmer').dimmer('show'); 
+					setTimeout(function(){ $('.dimmer').dimmer('hide'); },2000);
+				</script>
+			";
+		?>
 		<script>
 		
 			$('#avatar').removeClass('right');

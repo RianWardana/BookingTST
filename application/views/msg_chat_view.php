@@ -4,15 +4,9 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		
 		<title>Kiriman Pesan</title>
-		<link rel="icon" href="<?php echo base_url("favicon.ico")?>">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.2/semantic.min.css">
-		<!--<link rel="stylesheet" href="<?php echo base_url("assets/semantic.min.css");?>">-->
-		<link rel="stylesheet" href="<?php echo base_url("assets/default.css");?>">
-		<link rel="stylesheet" href="<?php echo base_url("assets/default.date.css");?>">
-		<link rel="stylesheet" href="<?php echo base_url("assets/wardana.css");?>">
-		
+		<?php include('css_tpl.php'); ?>
+	
 		<style>
 			#chat_header {
 				padding: 0%;
@@ -61,8 +55,6 @@
 				#send_button { padding: 0px; }
 			}
 		</style>
-		
-		
 	</head>
   
 
@@ -89,14 +81,7 @@
 		</div>
 
 		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.2/semantic.min.js"></script>
-		<!--<script type="text/javascript" src="<?php echo base_url("assets/jquery.min.js");?>"></script>-->
-		<!--<script type="text/javascript" src="<?php echo base_url("assets/semantic.min.js");?>"></script>-->
-		<script type="text/javascript" src="<?php echo base_url("assets/picker.js");?>"></script>
-		<script type="text/javascript" src="<?php echo base_url("assets/picker.date.js");?>"></script>
-		<script type="text/javascript" src="<?php echo base_url("assets/jquery.knob.js");?>"></script>
-		<script type="text/javascript" src="<?php echo base_url("assets/wardana.js");?>"></script>
+		<?php include('js_tpl.php'); ?>
 		
 		<script>
 			function scroll_bawah() {

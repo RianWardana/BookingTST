@@ -74,8 +74,8 @@
 			
 			
 		
+		<?php include_once 'js_tpl.php' ?>
 		<script>
-			
 			$('#daftar-form')
 				.form({
 					

@@ -48,7 +48,7 @@
 						
 						<?php include('msg_sidebar_tpl.php'); ?>
 						
-						<!------------------------------------------MESSAGE------------------------------------------------------------------------->
+						<?php /*************************************MESSAGE**********************************************************************/ ?>
 						<div id="msg_content" class="twelve wide column">
 							<div class="ui fluid vertical menu">
 								<?php							
@@ -69,14 +69,15 @@
 								?>
 							</div>
 						</div>
-						<!-------------------------------------------------------------------------------------------------------------------------->
+						<?php /******************************************************************************************************************/ ?>
 						
 					</div>
 				</div>
 			</div>
 		</div>
 
-	
+		
+		<?php include_once 'js_tpl.php' ?>
 		<script>	
 			if (window.innerWidth < 970) document.getElementById('msg_content').className = "sixteen wide column";
 			else document.getElementById('msg_content').className = "twelve wide column";

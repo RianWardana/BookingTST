@@ -57,9 +57,15 @@ class Booking_model extends CI_Model {
 		")->result();
 		
 		foreach ($result as $booking) {
-			if ( ($waktu_mulai >= strtotime($booking->jam_mulai)) && ($waktu_mulai < strtotime($booking->jam_bubar)) ) { return TRUE; break; }
-			if ( ($waktu_bubar > strtotime($booking->jam_mulai)) && ($waktu_bubar <= strtotime($booking->jam_bubar)) ) { return TRUE; break; }
-			if ( ($waktu_mulai <= strtotime($booking->jam_mulai)) && ($waktu_bubar >= strtotime($booking->jam_bubar)) ) { return TRUE; break; }
+			if 	(	( ($waktu_mulai >= strtotime($booking->jam_mulai)) && ($waktu_mulai < strtotime($booking->jam_bubar)) ) ||
+					( ($waktu_bubar > strtotime($booking->jam_mulai)) && ($waktu_bubar <= strtotime($booking->jam_bubar)) ) ||
+					( ($waktu_mulai <= strtotime($booking->jam_mulai)) && ($waktu_bubar >= strtotime($booking->jam_bubar)) ) 
+				) {
+					$mulai = date("H:i", strtotime($booking->jam_mulai));
+					$bubar = date("H:i", strtotime($booking->jam_bubar));
+					return "Anda telah mengirim booking untuk jam $mulai - $bubar kepada {$booking->terbooking}";
+					break; 
+			}
 		}
 		return FALSE;
 	}
@@ -76,9 +82,10 @@ class Booking_model extends CI_Model {
 		$waktu_mulai = min(strtotime($tanggal . ' ' . $this->input->post('input_mulai')), strtotime($tanggal . ' ' . $this->input->post('input_bubar')));
 		$waktu_bubar = max(strtotime($tanggal . ' ' . $this->input->post('input_mulai')), strtotime($tanggal . ' ' . $this->input->post('input_bubar')));
 		
-		if ($waktu_mulai == $waktu_bubar) return FALSE;
-		else if ($this->udah_booking($tanggal, $waktu_mulai, $waktu_bubar)) return FALSE;
-		else if ($this->udah_lewat($waktu_mulai)) return FALSE;
+		if ($waktu_mulai == $waktu_bubar) return 'Anda mengirim booking dengan durasi kurang dari satu menit';
+		else if ($this->udah_booking($tanggal, $waktu_mulai, $waktu_bubar)) return $this->udah_booking($tanggal, $waktu_mulai, $waktu_bubar);
+		else if ($this->udah_lewat($waktu_mulai)) return 'Anda mengirim booking untuk waktu yang telah berlalu';
+		
 		else {
 			$data = array(
 				'pembooking' => $this->session->userdata('displayname'),
@@ -88,7 +95,7 @@ class Booking_model extends CI_Model {
 			);
 			
 			$this->db->insert('booking', $data); 
-			return TRUE;
+			return 'sukses';
 		}
 	}
 	

@@ -48,54 +48,23 @@ class Booking extends MY_Controller {
 				if ($this->session->userdata('login')){
 					
 					// BOOKING BERHASIL -> REDIRECT DAN SET DIMMER //
-					if ($this->booking_model->create_booking($guru, $tanggal)) {
-						$this->session->set_flashdata('flash_booking', "
-							<div class='ui page dimmer'>
-								<div class='content'>
-									<div class='center'>
-										<h2 class='ui center aligned inverted icon header'><i class='massive book icon'></i>Booking Anda berhasil dikirim</h2>
-									</div>
-								</div>
-							</div>
-							<script>
-								$('.dimmer').dimmer('show'); 
-								setTimeout(function(){ $('.dimmer').dimmer('hide'); },3000);
-							</script>
+					if ($this->booking_model->create_booking($guru, $tanggal) == 'sukses') {
+						$this->session->set_flashdata('dimmer_booking', "
+							<i class='massive book icon'></i>Booking Anda berhasil dikirim
 						");
 						redirect("booking/$guru/$tanggal");
 					} 
 					
 					else {
-						$this->session->set_flashdata('flash_booking', "
-						<div class='ui error message'>
-							<div class='header'>Booking Anda gagal</div>
-							<ul class='list'>
-								<li>Anda booking untuk waktu yang telah berlalu, atau</li>
-								<li>Anda sudah mengirim booking lain pada waktu yang sama</li>
-								<li>Cek semua daftar booking yang telah Anda kirimkan di halaman <a href='". base_url('notification') ."'>Notification</a></li>
-							</ul>
-						</div>
-						");
+						$this->session->set_flashdata('flash_booking', $this->booking_model->create_booking($guru, $tanggal));
 						redirect("booking/$guru/$tanggal");
 					}
 				}
 				
-				// USER BELUM LOGIN -> REDIRECT KE LOGIN DAN SET DIMMER //
+				// USER BELUM LOGIN -> REDIRECT KE LOGIN DAN SET FLASH //
 				else {
-					$this->session->set_flashdata('login_booking', "
-						<div class='ui page dimmer'>
-							<div class='content'>
-								<div class='center'>
-									<h2 class='ui center aligned inverted icon header'><i class='massive sign in icon'></i>Silakan Login terlebih dahulu</h2>
-								</div>
-							</div>
-						</div>
-						<script>
-							$('.dimmer').dimmer('show');
-							setTimeout(function(){ $('.dimmer').dimmer('hide'); },3000);
-						</script>
-					");
-					redirect('login'); 
+					$this->session->set_flashdata('login_booking', true);
+					redirect('login');
 				}
 			}
 			
@@ -103,18 +72,8 @@ class Booking extends MY_Controller {
 			// USER MEMBATALKAN BOOKING -> REFRESH DAN SET DIMMER //
 			else if ($this->input->post('booking_batal')) {
 				if ($this->booking_model->batal_booking($this->input->post('booking_batal'))) {
-					$this->session->set_flashdata('flash_booking', "
-						<div class='ui page dimmer'>
-							<div class='content'>
-								<div class='center'>
-									<h2 class='ui center aligned inverted icon header'><i class='massive remove circle icon'></i>Booking berhasil dibatalkan</h2>
-								</div>
-							</div>
-						</div>
-						<script>
-							$('.dimmer').dimmer('show'); 
-							setTimeout(function(){ $('.dimmer').dimmer('hide'); },3000);
-						</script>
+					$this->session->set_flashdata('dimmer_booking', "
+						<i class='massive remove circle icon'></i>Booking berhasil dibatalkan
 					");
 					redirect("booking/$guru/$tanggal");
 				}

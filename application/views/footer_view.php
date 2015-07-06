@@ -21,6 +21,6 @@
 				<p>Dibuat dengan ikhlas oleh <a href="http://rianwardana.com" target="blank">Rian Wardana</a></p>
 			</div>
 		</div>
-		
+		<?php include_once 'js_tpl.php' ?>
 	</body>
 </html>

@@ -13,7 +13,10 @@ class Message extends MY_Controller {
 	
 	
 	public function index($rx = '') {
-		if($this->session->userdata('login') == FALSE) redirect('login');
+		if($this->session->userdata('login') == FALSE) {
+			$this->session->set_flashdata('login_booking', true);
+			redirect('login');
+		}
 		
 		else {
 			$check_rx = $this->msg_model->check_rx($rx, $this->profile);

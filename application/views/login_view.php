@@ -12,8 +12,21 @@
 	<body>
 		
 		<?php
+			include_once 'js_tpl.php';
 			$login_booking = $this->session->flashdata('login_booking');
-			if(isset($login_booking)){ echo $login_booking; }
+			if(isset($login_booking) && $login_booking) echo "
+				<div class='ui page dimmer'>
+					<div class='content'>
+						<div class='center'>
+							<h2 class='ui center aligned inverted icon header'><i class='massive sign in icon'></i>Silakan Login terlebih dahulu</h2>
+						</div>
+					</div>
+				</div>
+				<script>
+					$('.dimmer').dimmer('show');
+					setTimeout(function(){ $('.dimmer').dimmer('hide'); },3000);
+				</script>
+			";
 		?>
 		
 		<div class="ui two column top aligned stackable page grid">
@@ -102,6 +115,7 @@
 			
 			
 		
+		<?php include_once 'js_tpl.php' ?>
 		<script>
 			$('#login-form')
 				.form({
