@@ -64,7 +64,7 @@ class Msg_model extends CI_Model {
 			'waktu' => date("Y-m-d H:i:s", time()),
 			'pengirim' => $this->session->userdata('username'),
 			'terkirim' => $rx,
-			'pesan' => $this->input->post('text_input')
+			'pesan' => $this->input->post('text_input', true)
 		);
 		$this->db->insert('message', $data);
 	}

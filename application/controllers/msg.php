@@ -30,12 +30,13 @@ class Msg extends MY_Controller {
 					$result = $this->msg_model->get_msg($this->profile, $rx);
 					$data = '[ ';
 					foreach($result as $msg) {
+						$msg_esc = preg_replace( '~[\\\\|]~', '?', str_replace('"', "'", $msg->pesan) );
 						if ($data != '[ ') $data .= ', ';
 						$data .= '{ ';
 						$data .= '"waktu" : ' . '"' . $msg->waktu . '", ';
 						$data .= '"pengirim" : ' . '"' . $msg->pengirim . '", ';
 						$data .= '"terkirim" : ' . '"' . $msg->terkirim . '", ';
-						$data .= '"pesan" : ' . '"' . $msg->pesan . '"';
+						$data .= '"pesan" : ' . '"' . $msg_esc . '"';
 						$data .= ' }';
 					}
 					$data .= ' ]';
