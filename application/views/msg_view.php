@@ -68,6 +68,15 @@
 									}
 								?>
 							</div>
+							
+							<?php
+								if (empty($msg_list)) echo "
+									<div class='ui message'>
+										<p class='header'>Pesan Anda kosong</p>
+										<ul class='list'>Anda belum menerima pesan dari siapa pun</ul>
+									</div>
+								";
+							?>
 						</div>
 						<?php /******************************************************************************************************************/ ?>
 						

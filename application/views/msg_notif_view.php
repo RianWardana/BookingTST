@@ -55,6 +55,17 @@
 											</a>
 										";
 									}
+									
+									if (empty($booking_list)) echo "
+										<div class='ui message'>
+											<p class='header'>Notifikasi Anda kosong</p>" . 
+											
+											($profile->kategori == 0 ? 
+											"<ul class='list'>Booking yang Anda lakukan di <a href='booking'>Halaman Booking</a> akan ditampilkan di sini</ul>" : 
+											"<ul class='list'>Daftar siswa yang mengirim booking kepada Anda akan ditampilkan di sini</ul>") . 
+											
+										"</div>"
+									;
 								?>
 								
 							</div>

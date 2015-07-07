@@ -60,7 +60,6 @@
 			</div>
 			
 			
-			
 			<h1 class="ui horizontal divider">Panduan</h1>
 			<div class="text_content">
 				<p>Login dan pendaftaran akun</p>
@@ -94,51 +93,9 @@
 					<li>Siswa dan guru dapat mengubah password bilamana perlu</li>
 				</ul>
 			</div>
-			
-			
-			
-			<h1 class="ui horizontal divider">Perubahan</h1>
-			<div class="text_content">
-				<p>Version 0.1 (06/06/15)</p>
-				<ul>
-					<li>Booking TST untuk jam 09.00 sampai jam 21.00</li>
-					<li>Booking TST untuk tujuh hari ke depan, kecuali hari Minggu</li>
-					<li>Mengirim pesan dari siswa ke guru dan sebaliknya</li>
-				</ul>
-				
-				<p>Version 0.2 (07/06/15)</p>
-				<ul>
-					<li>Memperbaiki bug yang memungkinkan siswa untuk booking pada hari Minggu</li>
-					<li>Menampilkan waktu pengiriman di setiap pesan</li>
-				</ul>
-				
-				<p>Version 1.0 (08/06/15)</p>
-				<ul>
-					<li>Menampilkan semua booking TST yang dilakukan, di halaman Notification</li>
-					<li>Memperbaiki bug yang memungkinkan siswa mengirim pesan sebagai guru dan sebaliknya</li>
-					<li>Siswa tidak diperkenankan melakukan dua booking pada waktu yang bersamaan</li>
-				</ul>
-				
-				<p>Version 1.1 (27/06/15)</p>
-				<ul>
-					<li>Memperbaiki bug yang menyebabkan banyak gambar gagal ditampilkan oleh browser</li>
-					<li>Memperbaiki bug yang menyebabkan Halaman Notifikasi dapat diakses tanpa melakukan login</li>
-				</ul>
-				
-				<p>Version 1.2 (03/07/15)</p>
-				<ul>
-					<li>Penggunaan AJAX pada Halaman Pesan, memungkinkan pengiriman dan penerimaan pesan tanpa reload browser</li>
-					<li>Siswa tidak diperkenankan melakukan booking untuk waktu yang telah berlalu</li>
-					<li>Memperbaiki bug yang memungkinkan siswa melakukan beberapa booking pada waktu yang bersamaan</li>
-					<li>...</li>
-				</ul>
-			</div>
+		
 	
 		</div>
-		
-
-	
-
 	
 		
 	</body>

@@ -101,8 +101,7 @@
 							<div class='ui error message'>
 								<div class='header'>Booking Anda gagal</div>
 								<ul class='list'>
-									<li>$flash_booking</li>
-									<li>Cek semua daftar booking yang telah Anda kirimkan di halaman <a href='". base_url('notification') ."'>Notification</a></li>
+									$flash_booking
 								</ul>
 							</div>
 						";
@@ -241,7 +240,7 @@
 					disable: [7],
 					min: true,
 					max: 7,
-					onClose: function(context) {
+					onSet: function(context) {
 						var set = document.getElementsByName("_submit")[0].value;
 						var redirect = '<?php echo base_url("booking/$guru->username"); ?>' + '/' + String(set);
 						console.log(redirect);

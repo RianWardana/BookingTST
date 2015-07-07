@@ -39,7 +39,8 @@
 */
 
 $route['default_controller'] = "index";
-$route['404_override'] = '';
+$route['404_override'] = 'notfound';
+$route['about'] = 'index/about';
 $route['daftar'] = 'login';
 $route['logout'] = 'login/logout';
 $route['booking/(:any)'] = 'booking/index/$1';

@@ -63,7 +63,10 @@ class Booking_model extends CI_Model {
 				) {
 					$mulai = date("H:i", strtotime($booking->jam_mulai));
 					$bubar = date("H:i", strtotime($booking->jam_bubar));
-					return "Anda telah mengirim booking untuk jam $mulai - $bubar kepada {$booking->terbooking}";
+					return "
+						<li>Anda telah mengirim booking untuk jam $mulai - $bubar kepada {$booking->terbooking}</li>
+						<li>Cek semua booking yang telah Anda kirimkan di halaman <a href='". base_url('notification') ."'>Notification</a></li>
+					";
 					break; 
 			}
 		}
