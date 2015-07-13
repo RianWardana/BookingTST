@@ -65,8 +65,7 @@ class Login_model extends CI_Model {
 			   'username' => $this->input->post('new_username'),
 			   'password' => $this->input->post('new_password'),
 			   'kategori' => 0,
-			   'nama' => $this->input->post('new_nama'),
-			   'keterangan' => $this->input->post('')
+			   'nama' => $this->input->post('new_nama')
 			);
 
 			$this->db->insert('user', $data);

@@ -9,7 +9,7 @@
 			
 			.footer .ui.basic.segment a {
 				text-decoration: none;
-				color: #ababab;
+				color: #9e9e9e;
 			}
 		</style>
 	</head>
