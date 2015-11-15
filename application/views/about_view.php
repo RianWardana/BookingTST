@@ -92,6 +92,11 @@
 				<ul>
 					<li>Memperbaiki bug yang memungkinkan <em>cross-site scripting</em> pada Halaman Pesan</li>
 				</ul>
+
+				<p>Version 1.4 (15/11/15)</p>
+				<ul>
+					<li>Penambahan fitur jadwal pada halaman Home bagi siswa terdaftar</li>
+				</ul>
 			</div>
 	
 	

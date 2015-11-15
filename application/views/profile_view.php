@@ -105,21 +105,34 @@
 
 					<form method="post" class="ui form" id="change-profile">
 						<div class="three fields">
-							<div class=" field">
+							<div class="field">
 								<label>Username</label>
 								<input type="text" value="<?php echo ($profile->kategori == 0 ? $profile->username : strtoupper($profile->username));?>" readonly>
 							</div>
 							
-							<div class=" field">
+							<div class="field">
 								<label>Nama</label>
 								<input type="text" maxlength="20" name="change_nama" value="<?php echo ucwords($profile->nama);?>" readonly>
 							</div>
 							
-							<div class=" field">
+							<div class="field">
 								<label><?php echo ($profile->kategori == 0 ? 'Sekolah' : 'Mata Pelajaran');?></label>
 								<input type="text" maxlength="25" name="change_keterangan" value="<?php echo ucwords($profile->keterangan);?>">
 							</div>
 						</div>
+
+						<div id="profilkelas" class="fields" <?php if ($session_kategori) echo 'style="display: none"';?>>
+							<div class="sixteen wide field">
+								<label>Kelas di GO</label>
+								<div class='ui fluid selection dropdown' style='margin-bottom: 20px;'>
+									<input type='hidden' name='kelas'>
+									<div id="kelasterpilih" class='default text'><?php echo ($session_kelas != '' ? $session_kelas : 'Pilih kelas'); ?></div>
+									<i class='dropdown icon'></i>
+									<div id="pilihankelas" class='menu'></div>
+								</div>
+							</div>
+						</div>
+
 						<input type="hidden" name="change-profile" value="profile">
 						<div id="save-1" class="ui center aligned basic segment">
 							<input type="submit" class="ui green submit button" value="Perbarui Profil Saya">
@@ -238,6 +251,31 @@
 						}
 						
 					});
+
+					$.ajax({
+						url: 'http://jadwal.bookingtst.com/api/kelas/' <?php echo ($session_kelas != '' ? "+$session_kelas" : ""); ?>,
+						success: function(string) {
+							json = JSON.parse(string);
+							$.each(json, function(i, kelas){
+								html = kelas.kelas;
+							});
+							$('#kelasterpilih').html(html);
+						}
+					})
+
+					$.ajax({
+						url: 'http://jadwal.bookingtst.com/api/daftarkelas/',
+						success: function(string) {
+							json = JSON.parse(string);
+							html = '';
+							$.each(json, function(i, kelas){
+								html += `
+									<div class='item' data-value='${kelas.no}'>${kelas.kelas}</div>
+								`;
+							});
+							$('#pilihankelas').html(html);
+						}
+					})
 				});
 				
 				$('.ui.dropdown')

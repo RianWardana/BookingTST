@@ -39,27 +39,28 @@
 			<img src="<?php echo base_url('assets/header.png');?>" style="margin-bottom: -4px;">
 		</div>
 		
-		
 		<div id="home_content">
-		
-			<h1 class="ui horizontal divider">Pembukaan</h1>
-			<div class="text_content">
-				<p>
-					Tutorial Service Time, atau TST, adalah salah satu layanan yang disediakan oleh Ganesha Operation untuk siswa yang membutuhkan 
-					waktu tambahan untuk konsultasi mengenai materi pelajaran. Selama ini layanan TST telah berhasil membantu siswa yang kesulitan 
-					pada mata pelajaran tertentu, untuk bangkit dan mentransformasikan materi-materi yang tadinya dirasa sulit menjadi semudah 
-					membalikkan telapak tangan.
-				</p>
-				
-				<p>
-					Keberhasilan layanan TST diindikasikan dengan meningkatnya pengguna TST secara signifikan, terlebih menjelang pekan ujian. 
-					Namun karenanya, tak sedikit siswa yang batal menggunakan layanan TST karena kesediaan pengajar dan waktu yang terbatas, 
-					serta kurangnya koordinasi antara siswa dengan pengajar. 
-					Oleh karenanya, fitur booking TST menjadi suatu kebutuhan yang esensial untuk kenyamanan dan kebutuhan siswa belajar.
-				</p>
-			</div>
+			<?php
+				if (($have_login) && (!$session_kategori)) {
+					if ($session_kelas != '') include('home_jadwal_view.php');
+					else {
+						echo "
+							<h1 class='ui horizontal divider'>Jadwal</h1>
+							<div class='ui negative message'>
+								<div class='header'>Jadwal tidak dapat ditampilkan</div>
+								<p>Anda belum memilih kelas di <a href='" . base_url('profile') ."'>Halaman Profil</a></p>
+							</div>
+						";
+					}
+				}
+			?>
+
+
+			<?php 
+				if (!$have_login) include('home_pembukaan_view.php');
+			?>
 			
-			
+	
 			<h1 class="ui horizontal divider">Panduan</h1>
 			<div class="text_content">
 				<p>Login dan pendaftaran akun</p>
@@ -96,7 +97,5 @@
 		
 	
 		</div>
-	
-		
 	</body>
 </html>

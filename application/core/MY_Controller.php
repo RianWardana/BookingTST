@@ -10,6 +10,10 @@ class MY_Controller extends CI_Controller
         
         if ($this->session->userdata('login') == TRUE){
             $this->data['have_login'] = TRUE;
+            $this->data['session_username'] = $this->session->userdata('username');
+            $this->data['session_kategori'] = $this->session->userdata('kategori');
+            $this->data['session_kelas'] = $this->session->userdata('kelas');
+            $this->data['session_displayname'] = $this->session->userdata('displayname'); // ini bikin error kalo nama bisa diganti
         }
 		
 		else{

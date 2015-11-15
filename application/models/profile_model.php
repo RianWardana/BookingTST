@@ -41,10 +41,12 @@ class Profile_model extends CI_Model {
 		
 		else
 			$data = array(
-			   'keterangan' => $this->input->post('change_keterangan')
+			   'keterangan' => $this->input->post('change_keterangan'),
+			   'kelas' => $this->input->post('kelas')
 			);
 		
 		$this->db->where('username', $username)->update('user', $data);
+		$this->session->set_userdata(array( 'kelas' => $this->input->post('kelas') ));
 		return TRUE;
 	}
 	

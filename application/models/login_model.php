@@ -45,7 +45,13 @@ class Login_model extends CI_Model {
 		$query = $this->db->where($where)->limit(1)->get('user');
 		
 		if($query->num_rows() == 1) {
-			$data = array('username' => $query->row()->username, 'displayname' => $query->row()->nama, 'login' => TRUE);
+			$data = array(
+				'username' => $query->row()->username,
+				'kategori' => $query->row()->kategori,
+				'kelas' => $query->row()->kelas,
+				'displayname' => $query->row()->nama, 
+				'login' => TRUE
+			);
             $this->session->set_userdata($data);
 			return TRUE;
 		}
