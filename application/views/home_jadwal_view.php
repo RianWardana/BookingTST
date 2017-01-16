@@ -27,7 +27,7 @@
 		<script>
 			$(document).ready(function(){
 				$.ajax({
-					url: 'http://jadwal.bookingtst.com/api/kelas/' + <?php echo $session_kelas; ?>,
+					url: 'http://jadwalgo.rianwardana.com/api/kelas/' + <?php echo $session_kelas; ?>,
 					success: function(string) {
 						row = JSON.parse(string);
 						$.each(row, function(i, kelas){
@@ -38,7 +38,7 @@
 				})
 
 				$.ajax({
-					url: 'http://jadwal.bookingtst.com/api/cari/' + <?php echo $session_kelas; ?>,
+					url: 'http://jadwalgo.rianwardana.com/api/cari/' + <?php echo $session_kelas; ?>,
 					success: function(string) {
 						row = JSON.parse(string);
 						var html = '';
