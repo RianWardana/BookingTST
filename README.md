@@ -9,4 +9,4 @@ TST menjadi suatu layanan yang sangat populer dan dinantikan sehingga pada akhir
 Maka terciptalah BookingTST sebagai layanan pembookingan TST berbasis online pertama di Indonesia. Siswa dan guru dapat membuat akun untuk dapat saling terhubung dan melakukan booking TST secara transparan dan sah. Selain itu BookingTST juga dilengkapi dengan fitur pengiriman pesan antara siswa dan guru.
 
 <br/>
-Sejak awal dimulai pada Juni 2015 proyek ini di-host di http://tst.jadwalgo.com, sebelum akhirnya memiliki domain sendiri di http://bookingtst.com. Sejak November 2016 domain tersebut sudah tidak aktif dan proyek ini disimpan dan dapat diakses di http://bookingsts.rianwardana.com.
+Sejak awal dimulai pada Juni 2015 proyek ini di-host di http://tst.jadwalgo.com, sebelum akhirnya memiliki domain sendiri di http://bookingtst.com. Sejak November 2016 domain tersebut sudah tidak aktif dan proyek ini disimpan di http://bookingtst.rianwardana.com.
